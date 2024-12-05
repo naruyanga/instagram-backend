@@ -19,5 +19,17 @@ postRouter.get("/postWithComments", async (req, res) => {
     res.status(500).send(error);
   }
 });
-
+postRouter.get("/posts", async (req, res) => {
+  const posts = await postModel
+    .find()
+    .populate("userId", "email username _id")
+    .populate({
+      path: "liked",
+      populate: {
+        path: "userId",
+        select: "username profileImage ",
+      },
+    });
+  res.send(posts);
+});
 module.exports = postRouter;
