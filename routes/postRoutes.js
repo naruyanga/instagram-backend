@@ -24,7 +24,7 @@ postRouter.get("/posts", async (req, res) => {
     .find()
     .populate("userId", "email username _id")
     .populate({
-      path: "liked",
+      path: "likes",
       populate: {
         path: "userId",
         select: "username profileImage ",
