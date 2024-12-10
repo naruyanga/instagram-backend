@@ -9,7 +9,7 @@ const { postModel } = require("../models/postSchema");
 postRouter.post("/createPost", post);
 postRouter.post("/comment", comments);
 
-postRouter.get("/postWithComments", async (req, res) => {
+postRouter.get("/comments", async (req, res) => {
   try {
     const comments = await postModel
       .find()
