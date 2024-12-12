@@ -4,6 +4,7 @@ const userRouter = Router();
 const signup = require("../controllers/signup");
 const follow = require("../controllers/follow");
 const unfollow = require("../controllers/unfollow");
+const authMiddleWare = require("../controllers/auth-middleware");
 
 const { userModel } = require("../models/userSchema");
 
