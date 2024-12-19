@@ -2,6 +2,7 @@ const Router = require("express");
 
 const like = require("../controllers/like");
 const { postModel } = require("../models/postSchema");
+const { likeModel } = require("../models/likeSchema");
 
 const likeRouter = Router();
 
@@ -18,13 +19,14 @@ likeRouter.get("/post/doublePopulate", async (req, res) => {
     throw new Error(error);
   }
 });
-likeRouter.get("/post/likedUsers:postId", async (req, res) => {
+likeRouter.get("/post/likedUsers/:postId", async (req, res) => {
   const { postId } = req.params;
   try {
-    const response = await postModel.find({ postId }).populate({
+    const response = await likeModel.find({ postId }).populate({
       path: "userId",
       select: "username email profileImage",
     });
+    console.log(response);
     res.json(response);
   } catch (error) {
     throw new Error(error);
