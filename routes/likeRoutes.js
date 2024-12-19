@@ -18,9 +18,10 @@ likeRouter.get("/post/doublePopulate", async (req, res) => {
     throw new Error(error);
   }
 });
-likeRouter.get("/post/likedUsers", async (req, res) => {
+likeRouter.get("/post/likedUsers:postId", async (req, res) => {
+  const { postId } = req.params;
   try {
-    const response = await postModel.find().populate({
+    const response = await postModel.find({ postId }).populate({
       path: "userId",
       select: "username email profileImage",
     });
