@@ -13,9 +13,10 @@ userRouter.post("/follow", follow);
 userRouter.post("/unfollow", unfollow);
 
 userRouter.get("/userWithPost", async (req, res) => {
+  const { userId } = req.params;
   try {
     const posts = await userModel
-      .find()
+      .find({ userId })
       .populate("posts", "postImage caption userId");
     res.status(200).json(posts);
   } catch (error) {
