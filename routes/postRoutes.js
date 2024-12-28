@@ -24,14 +24,7 @@ postRouter.get("/comments/:postId", async (req, res) => {
 postRouter.get("/posts", authMiddleWare, async (req, res) => {
   const posts = await postModel
     .find()
-    .populate("userId", "email username _id")
-    .populate({
-      path: "likes",
-      populate: {
-        path: "userId",
-        select: "username profileImage ",
-      },
-    });
+    .populate("userId", "username profileImage");
   res.send(posts);
 });
 module.exports = postRouter;

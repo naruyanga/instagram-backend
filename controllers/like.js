@@ -1,4 +1,3 @@
-const { likeModel } = require("../models/likeSchema");
 const { postModel } = require("../models/postSchema");
 
 const like = async (req, res) => {
