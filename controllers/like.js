@@ -4,13 +4,9 @@ const { postModel } = require("../models/postSchema");
 const like = async (req, res) => {
   const { userId, postId } = req.body;
   try {
-    const likeResponse = await likeModel.create({
-      userId,
-      postId,
-    });
     const response = await postModel.findByIdAndUpdate(postId, {
       $addToSet: {
-        likes: likeResponse._id,
+        likes: userId,
       },
     });
     res.status(200).json(response);
