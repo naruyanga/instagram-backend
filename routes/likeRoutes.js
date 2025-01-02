@@ -21,7 +21,7 @@ likeRouter.get("/post/doublePopulate", async (req, res) => {
 likeRouter.get("/post/likedUsers/:postId", async (req, res) => {
   const { postId } = req.params;
   try {
-    const response = await postModel.findById(postId).populate({
+    const response = await postModel.findById({ _id: postId }).populate({
       path: "likes",
     });
 
