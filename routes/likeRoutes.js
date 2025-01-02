@@ -23,6 +23,7 @@ likeRouter.get("/post/likedUsers/:postId", async (req, res) => {
   try {
     const response = await postModel.find({ _id: postId }).populate({
       path: "likes",
+      select: "username profileIamge",
     });
     res.json(response);
   } catch (error) {
