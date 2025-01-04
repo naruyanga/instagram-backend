@@ -22,9 +22,7 @@ postRouter.get("/comments/:postId", async (req, res) => {
 });
 
 postRouter.get("/posts", authMiddleWare, async (req, res) => {
-  const posts = await postModel
-    .find()
-    .populate("userId", "username profileImage");
+  const posts = await postModel.find().populate("userId");
   res.send(posts);
 });
 module.exports = postRouter;

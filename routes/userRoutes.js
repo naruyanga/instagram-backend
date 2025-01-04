@@ -19,7 +19,7 @@ userRouter.get("/userWithPost/:userId", async (req, res) => {
   const { userId } = req.params;
   try {
     const posts = await userModel
-      .find({ userId })
+      .findById(userId)
       .populate("posts", "postImage caption userId");
     res.status(200).json(posts);
   } catch (error) {
