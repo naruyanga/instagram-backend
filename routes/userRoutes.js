@@ -12,7 +12,6 @@ const { userModel } = require("../models/userSchema");
 userRouter.post("/signup", signup);
 userRouter.post("/login", login);
 userRouter.post("/follow", follow);
-
 userRouter.post("/unfollow", unfollow);
 
 userRouter.get("/userWithPost/:userId", async (req, res) => {

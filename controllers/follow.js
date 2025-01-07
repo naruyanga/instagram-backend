@@ -15,7 +15,7 @@ const follow = async (req, res) => {
         followers: followingUserId,
       },
     });
-    res.status(200).send("done");
+    res.status(200).send({ message: "done" });
   } catch (error) {
     throw new Error(error);
   }
