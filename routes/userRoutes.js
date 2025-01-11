@@ -26,4 +26,29 @@ userRouter.get("/userWithPost/:userId", async (req, res) => {
   }
 });
 
+userRouter.get("/getFollowingUsers/:userId", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const users = await userModel.findById(userId).populate({
+      path: "following",
+      select: "username email profileImage",
+    });
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+userRouter.get("/getFollowedUsers/:userId", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const users = await userModel.findById(userId).populate({
+      path: "followers",
+      select: "username email profileImage",
+    });
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 module.exports = userRouter;
