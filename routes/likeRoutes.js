@@ -2,10 +2,12 @@ const Router = require("express");
 
 const like = require("../controllers/like");
 const { postModel } = require("../models/postSchema");
+const disLike = require("../controllers/unlike");
 
 const likeRouter = Router();
 
 likeRouter.post("/post/like", like);
+likeRouter.post("/post/disLike", disLike);
 
 likeRouter.get("/post/doublePopulate", async (req, res) => {
   try {
