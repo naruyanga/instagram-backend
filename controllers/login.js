@@ -16,14 +16,13 @@ const login = async (req, res) => {
         process.env.JWT_SECRET,
         { expiresIn: "24h" }
       );
-      res.json("amjilttai nevterlee", {
-        token,
-      });
+      res.json({ token });
     } else {
+      console.log("working");
       res.send("wrong password or email");
     }
   } catch (error) {
-    res.status(500).send(console.log(error));
+    res.status(500).send(error);
   }
 };
 module.exports = login;
